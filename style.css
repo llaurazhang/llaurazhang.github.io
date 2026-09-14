@@ -245,7 +245,9 @@
 .laptop-light #aboutPopup {
   top: 150px;
   left: 100px;
-  height: 320px;
+  height: 380px;
+  max-height: calc(100vh - 220px); 
+  overflow-y: auto; 
 }
 .laptop-light #contactPopup {
   top: 420px;
@@ -339,4 +341,3 @@
 [data-theme="dark"] .sun-icon { 
   content: url("img/moon.svg"); 
 }
-
