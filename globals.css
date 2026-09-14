@@ -1,0 +1,67 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+* {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+/*light mode and dark mode colours*/
+:root {
+  --bg-color: #ffffff;
+  --window-bg: #ffeeee;
+  --titlebar-bg: #e8e8ea;
+  --text-color: #000000;
+  --subtext-color: #666666;
+  --name-color: #FF9898;
+  --hi-color:black;
+}
+
+[data-theme="dark"] {
+  --bg-color: #49454F;
+  --window-bg: #D8ECFF;
+  --titlebar-bg: #3a3a3a;
+  --text-color: #f5f5f5;
+  --subtext-color: #aaaaaa;
+  --name-color: #5E5E5E;
+  --hi-color: white;
+}
+
+html,
+body {
+  margin: 0px;
+  min-height: 100%;
+}
+/* a blue color as a generic focus style */
+button:focus-visible {
+  outline: 2px solid #4a90e2 !important;
+  outline: -webkit-focus-ring-color auto 5px !important;
+}
+a {
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: "SF Pro";
+  src: url("img/SF-Pro.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SF Compact";
+  src: url("img/SF-Compact-Text-Regular.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SF Pro";
+  src: url("img/SF-Pro-Text-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SF Pro";
+  src: url("img/SF-Pro-Display-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="icon" type="image/x-icon" href="img/cookie.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="utf-8" />
+  <title>laura's portfolio</title>
+  <link rel="stylesheet" href="globals.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="laptop-light">
+    <div class="main-window-group">
+        <div class="top-bar">
+            <span class="traffic-dot red"></span>
+            <span class="traffic-dot yellow"></span>
+            <span class="traffic-dot green"></span>
+        </div>
+      <div class="window-contents">
+            <div class="about-icon" id="aboutButton">
+                <div class="div">about</div>
+                <img class="person-icon" src="img/about-icon.svg" />
+            </div>
+        <div class="contact-icon" id="contactButton">
+          <div class="text-wrapper">contact me</div>
+          <img class="message-icon" src="img/contact-icon.svg" />
+        </div>
+
+        <main class="label">
+          <h1 class="intro">
+            <span class="hi-text">hi! </span><span class="span">i'm laura</span>
+          </h1>
+          <h2 class ="subtext">majoring in cs | interested in ui/ux design</h2>
+        </main>
+      </div>
+    </div>
+
+      <!-- about me popup -->
+    <div class="window-popup" id="aboutPopup">
+        <div class="popup-titlebar" id="popupTitlebar">
+            <span class="traffic-dot red" id="popupClose"></span>
+            <span class="traffic-dot yellow"></span>
+            <span class="traffic-dot green"></span>
+            <span class="popup-title">about me!</span>
+        </div>
+        <div class="popup-content">
+            <h3>some things to know</h3>
+            <p><span class="highlight">name: </span>laura zhang</p>
+            <p><span class="highlight">MBTI: </span>INFP</p>
+            <p><span class="highlight">degree & year: </span>3rd yr cs</p>
+            <br><p><span class="highlight">favourite movie: </span>i have a <a href="https://letterboxd.com/kerop1/">letterboxd</a> top 4!</p>
+            <p><span class="highlight">favourite game: </span>botw - legend of zelda</p>
+            <p><span class="highlight">hobbies: </span>watching films and tv shows, listening to music, baking, games w/ friends, reading</p>
+            <br><p><span class="highlight">tools: </span>figma, javascript, typescript, python, C, (learning) HTML + CSS</p>
+        </div>
+    </div>
+
+    <!-- contact popup -->
+    <div class="window-popup" id="contactPopup">
+      <div class="popup-titlebar" id="contactTitlebar">
+        <span class="traffic-dot red" id="contactClose"></span>
+        <span class="traffic-dot yellow"></span>
+        <span class="traffic-dot green"></span>
+        <span class="popup-title">let's connect!</span>
+      </div>
+    <div class="popup-content">
+        <img src="img/rilakkuma.gif" alt="rilakkumma" class="contact-image">
+        <h3>thanks for visiting( *ˊᵕˋ)</h3>
+        <p><span class="highlight">email: </span>laurazhang888@gmail.com</p>
+        <p><span class="highlight">linkedin: </span><a href="https://www.linkedin.com/in/laura-zhang-850071319/">/in/laura-zhang</a></p>
+      </div>
+    </div>
+    <img class="sun-icon" src="img/sun-icon.svg" />
+    <img class="volume-icon" id="volumeButton" src="img/volume-icon.svg" />
+    <audio id="bgMusic" src="audio/Animal Crossing_ New Horizons - 12PM.mp3" loop></audio>
+    <div class="now-playing" id="nowPlaying">
+      <span class="now-playing-text"> ♬ Animal Crossing NH - 12PM ♪ </span>
+    </div>
+    <div class="villager">
+      <img src="img/villager.gif" alt="marshal from acnh" class="marshal">
+    </div>
+    <img class="footer-colour" src="img/footer-colour.svg" />
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
