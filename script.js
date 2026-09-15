@@ -69,11 +69,33 @@ if (savedTheme) {
 }
 html.setAttribute('data-theme', initialTheme);
 
-sunIcon.addEventListener('click', () => {
-  // change themes when day/night changes
-  const current = html.getAttribute('data-theme');
-  // switch themes to opposite of current theme
+// volume button code snippet from tutorial
+const bgMusic = document.getElementById('bgMusic');
+const volumeButton = document.getElementById('volumeButton');
+let isPlaying = false;
 
+volumeButton.addEventListener('click', () => {
+  if (isPlaying) {
+    bgMusic.pause();
+    volumeButton.src = 'img/volume-off-icon.png';
+    isPlaying = false;
+  } else {
+    bgMusic.play()
+      .then(() => {
+        volumeButton.src = 'img/volume-icon.svg'
+        isPlaying = true;
+      })
+      .catch((error) => {
+        console.error('music could not play:', error);
+      });
+  }
+});
+
+// change themes when day/night button is clicked
+sunIcon.addEventListener('click', () => {
+  const current = html.getAttribute('data-theme');
+  updateMusicForTheme(initialTheme);
+  // switch themes to opposite of current theme
   let next;
   if (current === 'dark') {
     next = 'light';
@@ -85,22 +107,6 @@ sunIcon.addEventListener('click', () => {
   // theme stays when page reloads
   localStorage.setItem('theme', next);
   updateMusicForTheme(next);
-});
-
-// volume button code snippet from tutorial
-const bgMusic = document.getElementById('bgMusic');
-const volumeButton = document.getElementById('volumeButton');
-let isPlaying = false;
-
-volumeButton.addEventListener('click', () => {
-  if (isPlaying) {
-    bgMusic.pause();
-    volumeButton.src = 'img/volume-off-icon.png';
-  } else {
-    bgMusic.play();
-    volumeButton.src = 'img/volume-icon.svg';
-  }
-  isPlaying = !isPlaying;
 });
 
 // function for playing music button
@@ -121,3 +127,6 @@ function updateMusicForTheme(theme) {
     bgMusic.play();
   }
 }
+
+// set src for audio to load music
+updateMusicForTheme(initialTheme);
