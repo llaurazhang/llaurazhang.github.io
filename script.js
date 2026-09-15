@@ -71,7 +71,6 @@ html.setAttribute('data-theme', initialTheme);
 
 sunIcon.addEventListener('click', () => {
   // change themes when day/night changes
-  updateMusicForTheme(initialTheme);
   const current = html.getAttribute('data-theme');
   // switch themes to opposite of current theme
 
