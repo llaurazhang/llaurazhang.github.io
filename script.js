@@ -70,6 +70,8 @@ if (savedTheme) {
 html.setAttribute('data-theme', initialTheme);
 
 sunIcon.addEventListener('click', () => {
+  // change themes when day/night changes
+  updateMusicForTheme(initialTheme);
   const current = html.getAttribute('data-theme');
   // switch themes to opposite of current theme
 
@@ -83,6 +85,7 @@ sunIcon.addEventListener('click', () => {
   html.setAttribute('data-theme', next);
   // theme stays when page reloads
   localStorage.setItem('theme', next);
+  updateMusicForTheme(next);
 });
 
 // volume button code snippet from tutorial
@@ -100,3 +103,22 @@ volumeButton.addEventListener('click', () => {
   }
   isPlaying = !isPlaying;
 });
+
+// function for playing music button
+const nowPlayingText = document.getElementById('nowPlayingText');
+
+function updateMusicForTheme(theme) {
+  const wasPlaying = isPlaying;
+
+  if (theme === 'dark') {
+    bgMusic.src = bgMusic.dataset.nightSrc;
+    nowPlayingText.textContent = '♬ playing: animal crossing - night ♪';
+  } else {
+    bgMusic.src = bgMusic.dataset.daySrc;
+    nowPlayingText.textContent = '♬ playing: animal crossing - day ♪';
+  }
+  // resume if it were still playing
+  if (wasPlaying) {
+    bgMusic.play();
+  }
+}
