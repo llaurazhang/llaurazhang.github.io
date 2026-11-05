@@ -1,91 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/x-icon" href="img/cookie.jpg">
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta charset="utf-8" />
-  <title>laura's portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>laura zhang · ux designer</title>
+  <meta name="description" content="laura zhang — ui/ux designer & cs student. figma designs, hardware prototypes and a tiny pixel pet." />
+  <link rel="icon" type="image/x-icon" href="img/cookie.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="globals.css">
   <link rel="stylesheet" href="style.css">
+  <script>
+    // set theme before paint so there's no flash
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('theme'); } catch (e) {}
+      if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 <body>
-  <div class="laptop-light">
-    <div class="main-window-group">
-        <div class="top-bar">
-            <span class="traffic-dot red"></span>
-            <span class="traffic-dot yellow"></span>
-            <span class="traffic-dot green"></span>
-        </div>
-      <div class="window-contents">
-            <div class="about-icon" id="aboutButton">
-                <div class="div">about</div>
-                <img class="person-icon" src="img/about-icon.svg" />
-            </div>
-        <div class="contact-icon" id="contactButton">
-          <div class="text-wrapper">contact me</div>
-          <img class="message-icon" src="img/contact-icon.svg" />
-        </div>
+  <div class="desktop" id="desktop">
 
-        <main class="label">
-          <h1 class="intro">
-            <span class="hi-text">hi! </span><span class="span">i'm laura</span>
-          </h1>
-          <h2 class ="subtext">majoring in cs | interested in ui/ux design</h2>
-        </main>
+    <!-- ===== top menu bar ===== -->
+    <header class="menubar">
+      <div class="menubar-left">
+        <button class="icon-btn sun-icon" id="themeButton" aria-label="toggle day / night mode"></button>
+        <button class="icon-btn" id="volumeButton" aria-label="toggle music">
+          <img id="volumeIcon" src="img/volume-off-icon.png" alt="" />
+        </button>
       </div>
-    </div>
+      <div class="now-playing">
+        <img class="playingIcon" src="img/wings_edited.png" alt="" />
+        <span class="now-playing-text" id="nowPlayingText">♬ animal crossing - day ♪</span>
+      </div>
+      <div class="clock" id="clock" aria-label="current time"></div>
+    </header>
 
-      <!-- about me popup -->
-    <div class="window-popup" id="aboutPopup">
-        <div class="popup-titlebar" id="popupTitlebar">
-            <span class="traffic-dot red" id="popupClose"></span>
-            <span class="traffic-dot yellow"></span>
-            <span class="traffic-dot green"></span>
-            <span class="popup-title">about me!</span>
-        </div>
-        <div class="popup-content">
-            <h3>some things to know</h3>
-            <p><span class="highlight">name: </span>laura zhang</p>
-            <p><span class="highlight">MBTI: </span>INFP</p>
-            <p><span class="highlight">degree & year: </span>3rd yr cs</p>
-            <br><p><span class="highlight">favourite movie: </span>i have a <a href="https://letterboxd.com/kerop1/">letterboxd</a> top 4!</p>
-            <p><span class="highlight">favourite games: </span>botw is my all time fav, i also love resident evil and silent hill! </p>
-            <p><span class="highlight">hobbies: </span>watching films and tv shows, listening to <a href="https://open.spotify.com/user/qlds8ko5rt7gd1op5e4odeyel?si=799cf938c7ef4ad7">music</a>, baking, games w/ friends, reading</p>
-            <br><p><span class="highlight">theme: </span>i decided to do day/night modes and incorporate some animal crossing elements in my design such as the themed icons and the bgm! i also like the mac os aesthetic so i tried mimicking the aesthetic for interactive pop-up windows</p>
-            <br><p><span class="highlight">tools: </span>figma, javascript, typescript, python, C, (learning) HTML + CSS</p>
-        </div>
-    </div>
-
-    <!-- contact popup -->
-    <div class="window-popup" id="contactPopup">
-      <div class="popup-titlebar" id="contactTitlebar">
-        <span class="traffic-dot red" id="contactClose"></span>
+    <!-- ===== main window ===== -->
+    <section class="main-window-group" aria-label="home">
+      <div class="top-bar">
+        <span class="traffic-dot red"></span>
         <span class="traffic-dot yellow"></span>
         <span class="traffic-dot green"></span>
+        <span class="top-bar-title">laura.zhang — portfolio</span>
+      </div>
+      <div class="window-contents">
+        <main class="label">
+          <h1 class="intro">
+            <span class="hi-text">hi!</span> <span class="span">i'm laura</span>
+          </h1>
+          <h2 class="subtext">ui/ux designer <span class="sep">|</span> 3rd yr cs <span class="sep">|</span> making things people like using</h2>
+          <p class="hint"><span class="blink">▸</span> open a folder to see my work</p>
+        </main>
+
+        <nav class="desktop-icons" aria-label="sections">
+          <button class="desk-icon folder" data-open="projectsWin" aria-label="open projects folder">
+            <img src="img/folder-projects.svg" alt="" />
+            <span>projects</span>
+          </button>
+          <button class="desk-icon folder" data-open="hardwareWin" aria-label="open hardware folder">
+            <img src="img/folder-hardware.svg" alt="" />
+            <span>hardware</span>
+          </button>
+          <button class="desk-icon" data-open="aboutPopup" aria-label="open about me">
+            <img src="img/about-icon.svg" alt="" />
+            <span>about</span>
+          </button>
+          <button class="desk-icon" data-open="contactPopup" aria-label="open contact">
+            <img src="img/contact-icon.svg" alt="" />
+            <span>contact me</span>
+          </button>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ===== desktop widgets ===== -->
+    <div class="widgets">
+      <!-- pixel pet -->
+      <aside class="widget pet-widget" id="petWidget" aria-label="mochi the pixel pet">
+        <div class="widget-grip" title="drag me">⋮⋮</div>
+        <div class="pet-bubble" id="petBubble" aria-live="polite"></div>
+        <div class="pet-device">
+          <span class="pet-loop"></span>
+          <div class="pet-brand">mochi</div>
+          <div class="pet-screen-frame">
+            <canvas id="petCanvas" width="48" height="32" aria-label="pixel pet screen, click to pet"></canvas>
+          </div>
+          <div class="pet-buttons">
+            <button class="pet-btn" data-action="feed" aria-label="feed mochi"><span>feed</span></button>
+            <button class="pet-btn" data-action="play" aria-label="play with mochi"><span>play</span></button>
+            <button class="pet-btn" data-action="pet" aria-label="pet mochi"><span>pet</span></button>
+          </div>
+        </div>
+        <div class="pet-status" id="petStatus">age 0d</div>
+      </aside>
+
+      <!-- sticky note -->
+      <aside class="widget sticky" id="sticky" aria-label="to-do sticky note">
+        <div class="widget-grip" title="drag me">⋮⋮</div>
+        <h4>to-do ✎</h4>
+        <ul class="todo" id="todoList">
+          <li><label><input type="checkbox" data-todo="0" /> visit laura's site</label></li>
+          <li><label><input type="checkbox" data-todo="1" /> open a folder</label></li>
+          <li><label><input type="checkbox" data-todo="2" /> feed mochi</label></li>
+          <li><label><input type="checkbox" data-todo="3" /> say hi to laura</label></li>
+        </ul>
+        <p class="todo-done" id="todoDone">all done! ( ˶ˆᗜˆ˵ ) ✿</p>
+      </aside>
+    </div>
+
+    <!-- ===== windows ===== -->
+
+    <!-- projects folder -->
+    <div class="window-popup finder" id="projectsWin" data-folder="projects" role="dialog" aria-label="projects folder">
+      <div class="popup-titlebar">
+        <span class="dots">
+          <button class="traffic-dot red" data-win="close" aria-label="close"></button>
+          <button class="traffic-dot yellow" data-win="min" aria-label="minimise"></button>
+          <button class="traffic-dot green" data-win="max" aria-label="maximise"></button>
+        </span>
+        <span class="popup-title">projects</span>
+      </div>
+      <div class="finder-toolbar">
+        <button class="tool-btn back-btn" aria-label="back" disabled>‹</button>
+        <div class="breadcrumb"></div>
+        <div class="view-toggle" role="group" aria-label="view">
+          <button class="tool-btn active" data-view="grid" aria-label="grid view">▦</button>
+          <button class="tool-btn" data-view="list" aria-label="list view">☰</button>
+        </div>
+      </div>
+      <div class="finder-body">
+        <aside class="finder-sidebar">
+          <p class="side-head">favourites</p>
+          <button data-goto="projectsWin" class="side-link current"><img src="img/folder-projects.svg" alt="">projects</button>
+          <button data-goto="hardwareWin" class="side-link"><img src="img/folder-hardware.svg" alt="">hardware</button>
+          <button data-goto="aboutPopup" class="side-link"><img src="img/about-icon.svg" alt="">about</button>
+          <button data-goto="contactPopup" class="side-link"><img src="img/contact-icon.svg" alt="">contact</button>
+        </aside>
+        <div class="finder-content"></div>
+      </div>
+      <div class="finder-statusbar"></div>
+    </div>
+
+    <!-- hardware folder -->
+    <div class="window-popup finder" id="hardwareWin" data-folder="hardware" role="dialog" aria-label="hardware folder">
+      <div class="popup-titlebar">
+        <span class="dots">
+          <button class="traffic-dot red" data-win="close" aria-label="close"></button>
+          <button class="traffic-dot yellow" data-win="min" aria-label="minimise"></button>
+          <button class="traffic-dot green" data-win="max" aria-label="maximise"></button>
+        </span>
+        <span class="popup-title">hardware</span>
+      </div>
+      <div class="finder-toolbar">
+        <button class="tool-btn back-btn" aria-label="back" disabled>‹</button>
+        <div class="breadcrumb"></div>
+        <div class="view-toggle" role="group" aria-label="view">
+          <button class="tool-btn active" data-view="grid" aria-label="grid view">▦</button>
+          <button class="tool-btn" data-view="list" aria-label="list view">☰</button>
+        </div>
+      </div>
+      <div class="finder-body">
+        <aside class="finder-sidebar">
+          <p class="side-head">favourites</p>
+          <button data-goto="projectsWin" class="side-link"><img src="img/folder-projects.svg" alt="">projects</button>
+          <button data-goto="hardwareWin" class="side-link current"><img src="img/folder-hardware.svg" alt="">hardware</button>
+          <button data-goto="aboutPopup" class="side-link"><img src="img/about-icon.svg" alt="">about</button>
+          <button data-goto="contactPopup" class="side-link"><img src="img/contact-icon.svg" alt="">contact</button>
+        </aside>
+        <div class="finder-content"></div>
+      </div>
+      <div class="finder-statusbar"></div>
+    </div>
+
+    <!-- about me -->
+    <div class="window-popup" id="aboutPopup" role="dialog" aria-label="about me">
+      <div class="popup-titlebar">
+        <span class="dots">
+          <button class="traffic-dot red" data-win="close" aria-label="close"></button>
+          <button class="traffic-dot yellow" data-win="min" aria-label="minimise"></button>
+          <button class="traffic-dot green" data-win="max" aria-label="maximise"></button>
+        </span>
+        <span class="popup-title">about me!</span>
+      </div>
+      <div class="popup-content">
+        <h3>some things to know</h3>
+        <p><span class="highlight">name: </span>laura zhang</p>
+        <p><span class="highlight">MBTI: </span>INFP</p>
+        <p><span class="highlight">degree & year: </span>3rd yr cs</p>
+        <p><span class="highlight">design focus: </span>ui/ux, interaction design, prototyping (on screen and off it!)</p>
+        <br><p><span class="highlight">favourite movie: </span>i have a <a href="https://letterboxd.com/kerop1/" target="_blank" rel="noopener">letterboxd</a> top 4!</p>
+        <p><span class="highlight">favourite games: </span>botw is my all time fav, i also love resident evil and silent hill! </p>
+        <p><span class="highlight">hobbies: </span>watching films and tv shows, listening to <a href="https://open.spotify.com/user/qlds8ko5rt7gd1op5e4odeyel?si=799cf938c7ef4ad7" target="_blank" rel="noopener">music</a>, baking, games w/ friends, reading</p>
+        <br><p><span class="highlight">theme: </span>i decided to do day/night modes and incorporate some animal crossing elements in my design such as the themed icons and the bgm! i also like the mac os aesthetic so i tried mimicking the aesthetic for interactive pop-up windows</p>
+        <br><p><span class="highlight">tools: </span>figma, javascript, typescript, python, C, HTML + CSS</p>
+      </div>
+    </div>
+
+    <!-- contact -->
+    <div class="window-popup" id="contactPopup" role="dialog" aria-label="contact">
+      <div class="popup-titlebar">
+        <span class="dots">
+          <button class="traffic-dot red" data-win="close" aria-label="close"></button>
+          <button class="traffic-dot yellow" data-win="min" aria-label="minimise"></button>
+          <button class="traffic-dot green" data-win="max" aria-label="maximise"></button>
+        </span>
         <span class="popup-title">let's connect!</span>
       </div>
-    <div class="popup-content">
-        <img src="img/rilakkuma.gif" alt="rilakkumma" class="contact-image">
+      <div class="popup-content">
+        <img src="img/rilakkuma.gif" alt="rilakkuma" class="contact-image">
         <h3>thanks for visiting( *ˊᵕˋ)</h3>
-        <p><span class="highlight">email: </span>laurazhang888@gmail.com</p>
-        <p><span class="highlight">linkedin: </span><a href="https://www.linkedin.com/in/laura-zhang-850071319/">/in/laura-zhang</a></p>
+        <p><span class="highlight">email: </span><a href="mailto:laurazhang888@gmail.com">laurazhang888@gmail.com</a>
+          <button class="copy-btn" id="copyEmail" data-copy="laurazhang888@gmail.com">copy</button></p>
+        <p><span class="highlight">linkedin: </span><a href="https://www.linkedin.com/in/laura-zhang-850071319/" target="_blank" rel="noopener">/in/laura-zhang</a></p>
       </div>
     </div>
-    <img class="sun-icon" src="img/sun-icon.svg" />
-    <img class="volume-icon" id="volumeButton" src="img/volume-icon.svg" />
-    <audio id="bgMusic" loop
-      data-day-src="audio/ACNH_day.mp3"
-      data-night-src="audio/ACNH_night.mp3">
-    </audio>
-    <div class="now-playing">
-      <img class="playingIcon" id="nowPlayingImage" src="img/wings_edited.png" />
-      <span class="now-playing-text" id="nowPlayingText">playing: animal crossing - day♬♪</span>
-    </div>
-    <div class="villager">
+
+    <!-- dims the page behind windows on phones -->
+    <div class="scrim" id="scrim"></div>
+
+    <!-- minimised windows end up here -->
+    <div class="min-tray" id="minTray" aria-label="minimised windows"></div>
+
+    <!-- villager + footer -->
+    <button class="villager" id="villager" aria-label="talk to marshal">
+      <span class="villager-bubble" id="villagerBubble"></span>
       <img src="img/villager.gif" alt="marshal from acnh" class="marshal">
-    </div>
-    <div class="footer-colour"></div>
+    </button>
+    <footer class="footer-colour">
+      <p>made with ♡ by laura · © <span id="year"></span></p>
+    </footer>
   </div>
+
+  <audio id="bgMusic" loop preload="none"
+    data-day-src="audio/ACNH_day.mp3"
+    data-night-src="audio/ACNH_night.mp3">
+  </audio>
+
+  <script src="projects.js"></script>
+  <script src="pet.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
