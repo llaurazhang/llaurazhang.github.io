@@ -221,6 +221,42 @@ button.traffic-dot:focus-visible::after { opacity: 1; }
   transition: color 0.4s ease;
 }
 
+/* typing animation — letters are laid out from the start (no layout shift)
+   and revealed one at a time by script.js */
+.intro.typing .ch {
+  visibility: hidden;
+}
+
+.intro.typing .ch.shown {
+  visibility: visible;
+}
+
+.intro .ch {
+  position: relative;
+}
+
+.intro {
+  cursor: pointer;
+}
+
+.intro .ch.caret::after {
+  content: "";
+  position: absolute;
+  right: -0.06em;
+  top: 0.12em;
+  bottom: 0.08em;
+  width: 0.06em;
+  border-radius: 2px;
+  background: var(--name-color);
+  animation: blink 1s steps(1) infinite;
+}
+
+.intro .ch.caret.before::after {
+  /* caret sits before the first letter while nothing is typed yet */
+  right: auto;
+  left: -0.06em;
+}
+
 .label .intro:hover .hi-text {
   animation: wave 0.6s ease;
 }
@@ -1412,8 +1448,8 @@ button.traffic-dot:focus-visible::after { opacity: 1; }
 
   .icon-btn,
   .icon-btn img {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
   }
 
   .now-playing {

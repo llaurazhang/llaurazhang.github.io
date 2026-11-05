@@ -409,6 +409,57 @@ volumeButton.addEventListener('click', () => {
 updateMusicForTheme(html.getAttribute('data-theme'));
 
 /* ==========================================================
+   typing animation for "hi! i'm laura" (click it to retype)
+   ========================================================== */
+const intro = document.getElementById('intro');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const chars = [];
+
+// wrap every letter in a span so we can reveal them one by one
+intro.querySelectorAll('.hi-text, .span').forEach((part) => {
+  const text = part.textContent;
+  part.textContent = '';
+  [...text].forEach((c) => {
+    const span = document.createElement('span');
+    span.className = 'ch';
+    span.textContent = c;
+    part.appendChild(span);
+    chars.push(span);
+  });
+});
+
+let typingTimer = null;
+function typeIntro() {
+  clearTimeout(typingTimer);
+  chars.forEach((c) => c.classList.remove('shown', 'caret', 'before'));
+  if (reduceMotion) return;
+
+  intro.classList.add('typing');
+  chars[0].classList.add('caret', 'before');
+  let i = 0;
+  const step = () => {
+    chars.forEach((c) => c.classList.remove('caret', 'before'));
+    chars[i].classList.add('shown', 'caret');
+    i++;
+    if (i >= chars.length) {
+      // done — keep the caret blinking for a bit, then tidy up
+      typingTimer = setTimeout(() => {
+        chars[chars.length - 1].classList.remove('caret');
+        intro.classList.remove('typing');
+      }, 2600);
+      return;
+    }
+    // little pause after "hi!", otherwise a slightly human rhythm
+    const delay = chars[i - 1].textContent === '!' ? 420 : 85 + Math.random() * 70;
+    typingTimer = setTimeout(step, delay);
+  };
+  typingTimer = setTimeout(step, 500);
+}
+
+typeIntro();
+intro.addEventListener('click', typeIntro);
+
+/* ==========================================================
    little extras: clock, villager, sparkles, year
    ========================================================== */
 const clock = document.getElementById('clock');
